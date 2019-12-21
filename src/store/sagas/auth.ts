@@ -8,4 +8,4 @@ export default function* AuthSagaWatcher() {
   // yield takeEvery(actionType.LOGIN_START, authLoginWorker);
 }
 
-function* LoginSagaWorker(action) {}
+function* LoginSagaWorker(action: any) {}

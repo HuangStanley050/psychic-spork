@@ -1,24 +1,20 @@
-import { createStore, applyMiddleware, compose, combineReducers } from "redux";
+import { createStore, applyMiddleware, combineReducers } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
 import createSagaMiddleware from "redux-saga";
 import authReducer from "./store/reducers/authReducer";
 import dataReducer from "./store/reducers/dataReducer";
-
-const composeEnhancers =
-  process.env.NODE_ENV === "development"
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    : null || compose;
+import rootSaga from "./store/sagas";
 
 const rootReducer = combineReducers({
   auth: authReducer,
   data: dataReducer
-  // error: errorReducer
 });
 
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
-  rootReducer
-  //composeEnhancers(applyMiddleware(sagaMiddleware))
+  rootReducer,
+  composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
-//sagaMiddleware.run(rootSaga);
+sagaMiddleware.run(rootSaga);
 export default store;

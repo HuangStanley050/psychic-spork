@@ -4,6 +4,8 @@ const initialState = {
   loading: false
 };
 
-export const reducer = (state = initialState, action: any) => {
+const reducer = (state = initialState, action: any) => {
   return state;
 };
+
+export default reducer;
