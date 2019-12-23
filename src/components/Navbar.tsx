@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import {
   Collapse,
   Navbar,
@@ -14,7 +15,8 @@ import {
 } from "reactstrap";
 const categories = [
   { type: "Node", link: "/category/node" },
-  { type: "React", link: "/category/react" }
+  { type: "React", link: "/category/react" },
+  { type: "Index", link: "/category" }
 ];
 
 const NavBar = props => {
@@ -29,7 +31,7 @@ const NavBar = props => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mx-auto" navbar>
             <NavItem>
-              <NavLink href="/Login">Login</NavLink>
+              <NavLink tag={Link} to="/Login">Login</NavLink>
             </NavItem>
 
             <UncontrolledDropdown nav inNavbar>
@@ -40,7 +42,7 @@ const NavBar = props => {
                 {categories.map((category, index) => {
                   return (
                     <DropdownItem key={index}>
-                      <NavLink href={`/category/${category.type}`}>
+                      <NavLink tag={Link} to={`/category/${category.type}`}>
                         {category.type}
                       </NavLink>
                     </DropdownItem>
