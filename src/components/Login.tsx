@@ -7,7 +7,7 @@ interface loginInput {
 }
 
 const useForm = () => {
-  const [form, setValue] = useState<loginInput>({
+  const [form, setValue] = useState<loginInput | { email: ""; password: "" }>({
     email: "",
     password: ""
   });
@@ -25,7 +25,7 @@ const useForm = () => {
     });
   };
 
-  return [form, handleChange, resetFields];
+  return [form, handleChange, resetFields] as const;
 };
 
 const Login: React.FC = props => {
