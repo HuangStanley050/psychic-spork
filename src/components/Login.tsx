@@ -36,14 +36,16 @@ const useForm = () => {
   return [form, handleChange, resetFields] as const;
 };
 
-const Login: React.FC<IProps> = ({ login }) => {
+const Login = ({ login }) => {
   const [form, handleChange, resetFields] = useForm();
 
   const submitHandler = e => {
     e.preventDefault();
     console.log(form);
     login(form);
+    resetFields();
   };
+
   return (
     <Container style={{ marginTop: "2rem" }}>
       <h1 style={{ textAlign: "center" }}>Login</h1>
