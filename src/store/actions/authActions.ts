@@ -1,6 +1,12 @@
-import { ActionTypes } from "./actionTypes";
+import { ActionTypes, AppAction } from "./actionTypes";
 
-export const loginStart = () => ({ type: ActionTypes.LOGIN_START });
+export const loginStart = (userInfo: {
+  email: string;
+  password: string;
+}): AppAction => ({
+  type: ActionTypes.LOGIN_START,
+  userInfo
+});
 export const loginOkay = (userInfo: {}) => ({
   type: ActionTypes.LOGIN_OKAY,
   userInfo

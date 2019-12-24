@@ -10,6 +10,10 @@ interface loginInput {
   password: string;
 }
 
+interface IProps {
+  login: () => void;
+}
+
 const useForm = () => {
   const [form, setValue] = useState<loginInput | { email: ""; password: "" }>({
     email: "",
@@ -32,12 +36,13 @@ const useForm = () => {
   return [form, handleChange, resetFields] as const;
 };
 
-const Login: React.FC = props => {
+const Login: React.FC<IProps> = ({ login }) => {
   const [form, handleChange, resetFields] = useForm();
 
   const submitHandler = e => {
     e.preventDefault();
     console.log(form);
+    login(form);
   };
   return (
     <Container style={{ marginTop: "2rem" }}>
@@ -70,7 +75,7 @@ const Login: React.FC = props => {
 };
 
 const mapDispatch = (dispatch: Dispatch<AppAction>) => ({
-  login: () => dispatch(loginStart())
+  login: (userInfo: loginInput) => dispatch(loginStart(userInfo))
 });
 export default connect(
   null,

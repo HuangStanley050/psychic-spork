@@ -1,11 +1,15 @@
 export enum ActionTypes {
-  LOGIN_START,
-  LOGIN_OKAY,
-  LOGIN_FAIL
+  LOGIN_START = "LOGIN_START",
+  LOGIN_OKAY = "LOGIN_OKAY",
+  LOGIN_FAIL = "LOGIN_FAIL"
 }
 
 export interface LoginStartAction {
   type: ActionTypes.LOGIN_START;
+  userInfo: {
+    email: string;
+    password: string;
+  };
 }
 
 export interface LoginOkayAction {
