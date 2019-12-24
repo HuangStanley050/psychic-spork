@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import { Container, Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { loginStart } from "../store/actions/authActions";
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
+import { AppAction } from "../store/actions/actionTypes";
 
 interface loginInput {
   email: string;
@@ -65,4 +69,10 @@ const Login: React.FC = props => {
   );
 };
 
-export default Login;
+const mapDispatch = (dispatch: Dispatch<AppAction>) => ({
+  login: () => dispatch(loginStart())
+});
+export default connect(
+  null,
+  mapDispatch
+)(Login);
