@@ -1,9 +1,19 @@
-const initialState = {
-  data: [],
+import { AppAction } from "../actions/actionTypes";
+
+export interface DataState {
+  data: {
+    data: [];
+  };
+  loading: boolean;
+}
+const initialState: DataState = {
+  data: {
+    data: []
+  },
   loading: false
 };
 
-const reducer = (state = initialState, action: any) => {
+const reducer = (state = initialState, action: AppAction) => {
   return state;
 };
 

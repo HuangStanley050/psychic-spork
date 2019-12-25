@@ -1,4 +1,4 @@
-import { LoginActionTypes, ActionTypes } from "../actions/actionTypes";
+import { AppAction, ActionTypes } from "../actions/actionTypes";
 
 interface Auth {
   isAuth: boolean;
@@ -14,7 +14,7 @@ const initialState: Auth = {
   error: {}
 };
 
-const reducer = (state = initialState, action: LoginActionTypes) => {
+const reducer = (state = initialState, action: AppAction) => {
   switch (action.type) {
     case ActionTypes.LOGIN_START:
       return {
