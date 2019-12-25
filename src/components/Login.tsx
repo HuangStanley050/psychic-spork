@@ -41,7 +41,7 @@ const Login: React.FC<IProps> = ({ login }) => {
 
   const submitHandler = e => {
     e.preventDefault();
-    //console.log(form);
+
     login(form);
     resetFields();
   };

@@ -22,8 +22,6 @@ const reducer = (state = initialState, action: LoginActionTypes) => {
         loading: true
       };
     case ActionTypes.LOGIN_OKAY:
-      //console.log(action.userInfo);
-      //console.log("login okay");
       return {
         ...state,
         loading: false,
@@ -31,7 +29,6 @@ const reducer = (state = initialState, action: LoginActionTypes) => {
         userInfo: { ...action.userInfo }
       };
     case ActionTypes.LOGIN_FAIL:
-      //console.log(action.error);
       return {
         ...state,
         loading: false,
