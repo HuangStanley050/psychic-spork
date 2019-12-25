@@ -14,12 +14,12 @@ export interface LoginStartAction {
 
 export interface LoginOkayAction {
   type: ActionTypes.LOGIN_OKAY;
-  userInfo?: {};
+  userInfo: {};
 }
 
 export interface LoginFailAction {
   type: ActionTypes.LOGIN_FAIL;
-  error?: {};
+  error: {};
 }
 
 export type LoginActionTypes =

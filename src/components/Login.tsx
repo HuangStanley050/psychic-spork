@@ -11,7 +11,7 @@ interface loginInput {
 }
 
 interface IProps {
-  login: () => void;
+  login: (userInfo: { email: string; password: string }) => void;
 }
 
 const useForm = () => {
@@ -36,12 +36,12 @@ const useForm = () => {
   return [form, handleChange, resetFields] as const;
 };
 
-const Login = ({ login }) => {
+const Login: React.FC<IProps> = ({ login }) => {
   const [form, handleChange, resetFields] = useForm();
 
   const submitHandler = e => {
     e.preventDefault();
-    console.log(form);
+    //console.log(form);
     login(form);
     resetFields();
   };
@@ -76,7 +76,7 @@ const Login = ({ login }) => {
   );
 };
 
-const mapDispatch = (dispatch: Dispatch<AppAction>) => ({
+const mapDispatch = (dispatch: Dispatch) => ({
   login: (userInfo: loginInput) => dispatch(loginStart(userInfo))
 });
 export default connect(
