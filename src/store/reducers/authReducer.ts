@@ -4,25 +4,38 @@ interface Auth {
   isAuth: boolean;
   userInfo: {};
   loading: boolean;
+  error: {};
 }
 
 const initialState: Auth = {
   isAuth: false,
   userInfo: {},
-  loading: false
+  loading: false,
+  error: {}
 };
 
 const reducer = (state = initialState, action: LoginActionTypes) => {
   switch (action.type) {
     case ActionTypes.LOGIN_START:
-      console.log("starting login actions");
-      return state;
+      return {
+        ...state,
+        loading: true
+      };
     case ActionTypes.LOGIN_OKAY:
-      console.log("login okay");
-      return state;
+      //console.log(action.userInfo);
+      //console.log("login okay");
+      return {
+        ...state,
+        loading: false,
+        isAuth: true,
+        userInfo: { ...action.userInfo }
+      };
     case ActionTypes.LOGIN_FAIL:
-      console.log("login fail");
-      return state;
+      //console.log(action.error);
+      return {
+        ...state,
+        error: { ...action.error }
+      };
     default:
       return state;
   }

@@ -9,8 +9,15 @@ import { loginFail, loginOkay } from "../actions/authActions";
 import API from "../../api";
 
 interface UserInfo {
-  jwt: string;
-  user: {};
+  data: {
+    jwt: string;
+    user: {};
+  };
+}
+
+interface loginError {
+  statusCode: number;
+  message: [];
 }
 
 export default function* AuthSagaWatcher() {
@@ -22,12 +29,22 @@ function* LoginSagaWorker(action: {
   userInfo: { email: string; password: string };
 }) {
   let result: UserInfo;
-
+  let token = "";
+  let userInfo: {};
+  let error: loginError;
   const { email, password } = action.userInfo;
   try {
     result = yield axios.post(API.login, { identifier: email, password });
-    console.log(result);
+    token = result.data.jwt;
+    userInfo = result.data.user;
+    yield localStorage.setItem("bookmarkApp", token);
+    yield put(loginOkay(userInfo));
   } catch (err) {
-    console.log(err);
+    error = {
+      statusCode: err.response.data.statusCode,
+      message: err.response.data.message
+    };
+    yield put(loginFail(error));
+    //console.log(error);
   }
 }
