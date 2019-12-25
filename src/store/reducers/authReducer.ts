@@ -34,6 +34,7 @@ const reducer = (state = initialState, action: LoginActionTypes) => {
       //console.log(action.error);
       return {
         ...state,
+        loading: false,
         error: { ...action.error }
       };
     default:

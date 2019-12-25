@@ -1,7 +1,24 @@
 export enum ActionTypes {
   LOGIN_START = "LOGIN_START",
   LOGIN_OKAY = "LOGIN_OKAY",
-  LOGIN_FAIL = "LOGIN_FAIL"
+  LOGIN_FAIL = "LOGIN_FAIL",
+  FETCH_BOOKMARKS = "FETCH_BOOKMARKS",
+  FETCH_BOOKMARKS_OKAY = "FETCH_BOOKMARKS_OKAY",
+  FETCH_BOOKMARKS_FAIL = "FETCH_BOOKMARKS_FAIL"
+}
+
+export interface BookMarksFetchStartAction {
+  type: ActionTypes.FETCH_BOOKMARKS;
+}
+
+export interface BookMarksFetchOkayction {
+  type: ActionTypes.FETCH_BOOKMARKS_OKAY;
+  data: {};
+}
+
+export interface BookMarksFetchFailAction {
+  type: ActionTypes.FETCH_BOOKMARKS_FAIL;
+  error: {};
 }
 
 export interface LoginStartAction {
@@ -27,4 +44,9 @@ export type LoginActionTypes =
   | LoginOkayAction
   | LoginFailAction;
 
-export type AppAction = LoginActionTypes;
+export type BookMarksActionTypes =
+  | BookMarksFetchOkayction
+  | BookMarksFetchStartAction
+  | BookMarksFetchFailAction;
+
+export type AppAction = LoginActionTypes | BookMarksActionTypes;
